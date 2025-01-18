@@ -1,18 +1,31 @@
 package com.Musicom.spotify_client;
 
-import com.Musicom.spotify_client.client.SpotifyClientUriBuilderProvider;
+import com.Musicom.spotify_client.provider.SpotifyClientUriProvider;
+//import com.Musicom.spotify_client.provider.TokenCodeProvider;
+//import com.Musicom.spotify_client.provider.TokenProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
+import org.springframework.web.client.RestClient;
 
 @Configuration
+@PropertySources({
+        @PropertySource("classpath:application.properties"),
+        @PropertySource("classpath:secret.properties")
+})
 public class SpotifyClientConfig {
     @Bean
-    public SpotifyClientUriBuilderProvider uriBuilderProvider(
+    public SpotifyClientUriProvider uriBuilderProvider(
             @Value("${spotify.api.version}")
             String version,
             @Value("${spotify.api.host}")
-            String host) {
-        return new SpotifyClientUriBuilderProvider(version, host);
+            String host,
+            @Value("${spotify.api.client_id}")
+            String clientId,
+            @Value("${spotify.api.client_secret}")
+            String clientSecret) {
+        return new SpotifyClientUriProvider(version, host, clientId, clientSecret);
     }
 }
