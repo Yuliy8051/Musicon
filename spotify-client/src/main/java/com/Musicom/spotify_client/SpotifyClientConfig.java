@@ -39,4 +39,15 @@ public class SpotifyClientConfig {
             uriProvider) {
         return new TokenCodeProvider(email, password, uriProvider);
     }
+
+    @Bean
+    public TokenProvider tokenProvider(
+            @Value("${spotify.api.client_id}")
+            String clientId,
+            @Value("${spotify.api.client_secret}")
+            String clientSecret,
+            SpotifyClientUriProvider uriProvider,
+            TokenCodeProvider tokenCodeProvider) {
+        return new TokenProvider(clientId, clientSecret, RestClient.create(), uriProvider, tokenCodeProvider);
+    }
 }
