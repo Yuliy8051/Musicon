@@ -20,6 +20,6 @@ public class AlbumType {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "albumType")
     private Set<Album> albums;
 }

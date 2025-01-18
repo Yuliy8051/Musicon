@@ -33,10 +33,10 @@ public class Album {
     @Column(nullable = false)
     private LocalDate releaseDate;
 
-    @OneToMany
+    @OneToMany(mappedBy = "album")
     private Set<Image> images;
 
-    @OneToMany
+    @OneToMany(mappedBy = "album")
     private Set<Track> tracks;
 
     @ManyToOne

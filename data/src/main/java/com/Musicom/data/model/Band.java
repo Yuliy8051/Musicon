@@ -29,7 +29,7 @@ public class Band {
     @Column(nullable = false)
     private int popularity;
 
-    @OneToMany
+    @OneToMany(mappedBy = "band")
     private Set<Image> images;
 
     @ManyToMany
