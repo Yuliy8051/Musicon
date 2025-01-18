@@ -2,3 +2,4 @@ rootProject.name = 'Musicom'
 
 include 'data'
 include 'spotify-client'
+include 'test'
