@@ -1,8 +1,8 @@
 package com.Musicom.spotify_client;
 
 import com.Musicom.spotify_client.provider.SpotifyClientUriProvider;
-//import com.Musicom.spotify_client.provider.TokenCodeProvider;
-//import com.Musicom.spotify_client.provider.TokenProvider;
+import com.Musicom.spotify_client.provider.TokenCodeProvider;
+import com.Musicom.spotify_client.provider.TokenProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,5 +27,16 @@ public class SpotifyClientConfig {
             @Value("${spotify.api.client_secret}")
             String clientSecret) {
         return new SpotifyClientUriProvider(version, host, clientId, clientSecret);
+    }
+
+    @Bean
+    public TokenCodeProvider tokenCodeProvider(
+            @Value("${spotify.email}")
+            String email,
+            @Value("${spotify.password}")
+            String password,
+            SpotifyClientUriProvider
+            uriProvider) {
+        return new TokenCodeProvider(email, password, uriProvider);
     }
 }
