@@ -55,7 +55,7 @@ public class TokenCodeProvider {
 
     private void sleep() {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         } catch (Exception ex) {}
     }
 }
