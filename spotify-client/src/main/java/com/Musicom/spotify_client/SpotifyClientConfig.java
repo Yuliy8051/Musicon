@@ -1,5 +1,6 @@
 package com.Musicom.spotify_client;
 
+import com.Musicom.spotify_client.client.SpotifyClient;
 import com.Musicom.spotify_client.provider.SpotifyClientUriProvider;
 import com.Musicom.spotify_client.provider.TokenCodeProvider;
 import com.Musicom.spotify_client.provider.TokenProvider;
@@ -47,5 +48,10 @@ public class SpotifyClientConfig {
             SpotifyClientUriProvider uriProvider,
             TokenCodeProvider tokenCodeProvider) {
         return new TokenProvider(clientId, clientSecret, RestClient.create(), uriProvider, tokenCodeProvider);
+    }
+
+    @Bean
+    public SpotifyClient spotifyClient(SpotifyClientUriProvider uriProvider) {
+        return new SpotifyClient(uriProvider, RestClient.create());
     }
 }
