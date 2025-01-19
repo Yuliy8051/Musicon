@@ -21,7 +21,7 @@ public class Track {
     private String sourceId;
 
     @Column(nullable = false)
-    private int duration_ms;
+    private int durationMs;
 
     @Column(unique = true, nullable = false)
     private String url;
