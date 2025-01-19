@@ -44,7 +44,4 @@ public class Album {
 
     @ManyToMany
     private Set<Market> availableMarkets;
-
-    @ManyToMany
-    private Set<Genre> genres;
 }

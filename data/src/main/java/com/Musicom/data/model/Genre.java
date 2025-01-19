@@ -22,7 +22,4 @@ public class Genre {
 
     @ManyToMany(mappedBy = "genres")
     private Set<Band> bands;
-
-    @ManyToMany(mappedBy = "genres")
-    private Set<Album> albums;
 }
