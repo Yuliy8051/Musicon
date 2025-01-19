@@ -1,16 +1,19 @@
 package com.Musicom.spotify_client.provider;
 
+import lombok.AllArgsConstructor;
 import org.springframework.web.util.UriComponentsBuilder;
 
-public record SpotifyClientUriProvider(String version,
-                                       String host,
-                                       String clientId,
-                                       String clientSecret) {
+@AllArgsConstructor
+public class SpotifyClientUriProvider {
+    private final String version;
+    private final String host;
+    private final String clientId;
+
     public UriComponentsBuilder builderForSpotifyApi() {
         return UriComponentsBuilder.newInstance()
                 .scheme("https")
                 .host(host)
-                .pathSegment(version());
+                .pathSegment(version);
     }
 
     public String authorizationUrl() {

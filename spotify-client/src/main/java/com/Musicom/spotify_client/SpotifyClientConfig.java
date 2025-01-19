@@ -23,10 +23,8 @@ public class SpotifyClientConfig {
             @Value("${spotify.api.host}")
             String host,
             @Value("${spotify.api.client_id}")
-            String clientId,
-            @Value("${spotify.api.client_secret}")
-            String clientSecret) {
-        return new SpotifyClientUriProvider(version, host, clientId, clientSecret);
+            String clientId) {
+        return new SpotifyClientUriProvider(version, host, clientId);
     }
 
     @Bean
