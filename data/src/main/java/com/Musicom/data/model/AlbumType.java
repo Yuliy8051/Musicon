@@ -22,4 +22,8 @@ public class AlbumType {
 
     @OneToMany(mappedBy = "albumType")
     private Set<Album> albums;
+
+    public AlbumType(String name) {
+        this.name = name;
+    }
 }
