@@ -1,4 +1,4 @@
-package com.Musicon.updater;
+package com.Musicom.updater;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

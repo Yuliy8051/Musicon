@@ -1,4 +1,4 @@
-package com.Musicon.updater;
+package com.Musicom.updater;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
