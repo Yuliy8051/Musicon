@@ -1,4 +1,3 @@
-src/main/resources/secret.properties
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
