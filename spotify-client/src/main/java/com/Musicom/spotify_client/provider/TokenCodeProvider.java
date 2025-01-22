@@ -1,11 +1,14 @@
 package com.Musicom.spotify_client.provider;
 
+import com.Musicom.spotify_client.exception.ThreadSleepException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+@Slf4j
 @RequiredArgsConstructor
 public class TokenCodeProvider {
     private final String email;
@@ -56,6 +59,9 @@ public class TokenCodeProvider {
     private void sleep() {
         try {
             Thread.sleep(3000);
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            log.error(ex.getMessage()); // TODO: move into exception handler
+            throw new ThreadSleepException(ex.getMessage());
+        }
     }
 }
