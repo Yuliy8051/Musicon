@@ -31,7 +31,7 @@ public class TokenProvider {
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
         formData.add("grant_type", "authorization_code");
         formData.add("code", codeValue);
-        formData.add("redirect_uri", "http://localhost:8080/token");
+        formData.add("redirect_uri", "http://localhost:8081/token");
 
         try {
             return client

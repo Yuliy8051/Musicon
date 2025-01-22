@@ -25,7 +25,7 @@ public class SpotifyClientUriProvider {
                 .pathSegment("authorize")
                 .queryParam("client_id", clientId)
                 .queryParam("response_type", "code")
-                .queryParam("redirect_uri", "http://localhost:8080/token")
+                .queryParam("redirect_uri", "http://localhost:8081/token")
                 .build()
                 .toUriString();
     }
