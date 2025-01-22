@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TestController {
+public class TokenController {
     @GetMapping("token")
     public ResponseEntity<Void> token() {
         return new ResponseEntity<>(HttpStatus.OK);
