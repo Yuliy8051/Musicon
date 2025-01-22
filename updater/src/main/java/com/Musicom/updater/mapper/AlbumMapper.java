@@ -28,26 +28,23 @@ public class AlbumMapper implements IMap<AlbumDto, Album> {
                 .releaseDate()
                 .split("-");
 
-        LocalDate releaseDate;
-        if (releaseDateParts.length == 1) {
-            releaseDate = LocalDate.of(
+        LocalDate releaseDate = switch (releaseDateParts.length) {
+            case 1 -> LocalDate.of(
                     Integer.parseInt(releaseDateParts[0]),
                     1,
                     1
             );
-        } else if (releaseDateParts.length == 2) {
-            releaseDate = LocalDate.of(
+            case 2 -> LocalDate.of(
                     Integer.parseInt(releaseDateParts[0]),
                     Integer.parseInt(releaseDateParts[1]),
                     1
             );
-        } else {
-            releaseDate = LocalDate.of(
+            default -> LocalDate.of(
                     Integer.parseInt(releaseDateParts[0]),
                     Integer.parseInt(releaseDateParts[1]),
                     Integer.parseInt(releaseDateParts[2])
             );
-        }
+        };
         album.setReleaseDate(releaseDate);
 
         AlbumType albumType = db
