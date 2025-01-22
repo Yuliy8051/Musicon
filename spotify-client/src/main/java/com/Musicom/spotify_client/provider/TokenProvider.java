@@ -1,7 +1,7 @@
 package com.Musicom.spotify_client.provider;
 
 import com.Musicom.spotify_client.dto.TokenDto;
-import com.Musicom.spotify_client.exception.TokenFetchingException;
+import com.Musicom.spotify_client.exception.SpotifyClientException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.LinkedMultiValueMap;
@@ -44,8 +44,7 @@ public class TokenProvider {
                     .body(TokenDto.class)
                     .token();
         } catch (NullPointerException ex) {
-            log.error("The value of token provided by Spotify API is null"); // TODO: move into exception handler
-            throw new TokenFetchingException();
+            throw new SpotifyClientException.TokenFetchingException();
         }
     }
 

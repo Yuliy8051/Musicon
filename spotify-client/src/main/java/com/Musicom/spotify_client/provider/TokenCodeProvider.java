@@ -1,6 +1,6 @@
 package com.Musicom.spotify_client.provider;
 
-import com.Musicom.spotify_client.exception.ThreadSleepException;
+import com.Musicom.spotify_client.exception.SpotifyClientException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
@@ -60,8 +60,7 @@ public class TokenCodeProvider {
         try {
             Thread.sleep(3000);
         } catch (Exception ex) {
-            log.error(ex.getMessage()); // TODO: move into exception handler
-            throw new ThreadSleepException(ex.getMessage());
+            throw new SpotifyClientException.ThreadSleepException(ex.getMessage());
         }
     }
 }
