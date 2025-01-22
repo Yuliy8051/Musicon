@@ -1,10 +1,10 @@
-package com.Musicom.data;
+package com.Musicom.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DataApplicationTests {
+class ApiApplicationTests {
 
 	@Test
 	void contextLoads() {
