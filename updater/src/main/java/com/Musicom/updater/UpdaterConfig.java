@@ -29,7 +29,7 @@ public class UpdaterConfig {
                         SimpleScheduleBuilder
                         .simpleSchedule()
                         .repeatForever()
-                        .withIntervalInMinutes(5)
+                        .withIntervalInHours(1)
                 ).build();
     }
 }
