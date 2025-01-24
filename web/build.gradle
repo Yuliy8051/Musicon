@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-	implementation project(":data")
+	implementation project(":web-api-contract")
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
