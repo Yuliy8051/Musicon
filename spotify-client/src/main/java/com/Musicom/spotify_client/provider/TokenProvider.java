@@ -3,14 +3,12 @@ package com.Musicom.spotify_client.provider;
 import com.Musicom.spotify_client.dto.TokenDto;
 import com.Musicom.spotify_client.exception.SpotifyClientException;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClient;
 
 import java.util.Base64;
 
-@Slf4j
 @AllArgsConstructor
 public class TokenProvider {
     private final String clientId;
