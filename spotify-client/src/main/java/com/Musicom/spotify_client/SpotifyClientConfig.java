@@ -4,6 +4,7 @@ import com.Musicom.spotify_client.client.SpotifyClient;
 import com.Musicom.spotify_client.provider.SpotifyClientUriProvider;
 import com.Musicom.spotify_client.provider.TokenCodeProvider;
 import com.Musicom.spotify_client.provider.TokenProvider;
+import com.Musicom.spotify_client.provider.WebDriverProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,8 +36,9 @@ public class SpotifyClientConfig {
             @Value("${spotify.password}")
             String password,
             SpotifyClientUriProvider
-            uriProvider) {
-        return new TokenCodeProvider(email, password, uriProvider);
+            uriProvider,
+            WebDriverProvider webDriverProvider) {
+        return new TokenCodeProvider(email, password, uriProvider, webDriverProvider);
     }
 
     @Bean

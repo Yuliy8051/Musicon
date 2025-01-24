@@ -2,13 +2,10 @@ package com.Musicom.spotify_client.provider;
 
 import com.Musicom.spotify_client.exception.SpotifyClientException;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-@Slf4j
 @RequiredArgsConstructor
 public class TokenCodeProvider {
     private final String email;
@@ -16,6 +13,8 @@ public class TokenCodeProvider {
     private final String password;
 
     private final SpotifyClientUriProvider uriProvider;
+
+    private final WebDriverProvider webDriverProvider;
 
     private WebDriver webDriver;
 
@@ -30,7 +29,7 @@ public class TokenCodeProvider {
     }
 
     private void openAuthorization() {
-        webDriver = new ChromeDriver();
+        webDriver = webDriverProvider.getWebDriver();
         String authorizationUrl = uriProvider.authorizationUrl();
         webDriver.get(authorizationUrl);
     }
