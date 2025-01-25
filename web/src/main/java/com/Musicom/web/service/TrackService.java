@@ -2,7 +2,6 @@ package com.Musicom.web.service;
 
 import com.Musicom.web_api_contract.PagedTracksDto;
 import lombok.AllArgsConstructor;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -16,6 +15,6 @@ public class TrackService {
                 .get()
                 .uri("track/page/" + page)
                 .retrieve()
-                .body(new ParameterizedTypeReference<>(){});
+                .body(PagedTracksDto.class);
     }
 }
