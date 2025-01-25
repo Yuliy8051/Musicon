@@ -45,7 +45,7 @@ public class BandMapper implements IMap<BandDto, Band> {
         return bandDto;
     }
 
-    public List<BandDto> mapAllEntities(Set<Band> bands) {
+    public List<BandDto> mapAllEntities(List<Band> bands) {
         return bands
                 .stream()
                 .map(this::mapEntity)
