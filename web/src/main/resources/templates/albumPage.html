@@ -18,7 +18,7 @@
             <a th:text="${album.getName()}" th:href="${album.getUrl()}"></a>
         </td>
         <td>
-            <img th:src="${album.getImage().getUrl()}"  th:alt="${album.getName()}" style="width: 25%">
+            <img th:if="${album.getImage().getUrl()} != null" th:src="${album.getImage().getUrl()}"  th:alt="${album.getName()}" style="width: 25%">
         </td>
         <td th:text="${album.getReleaseDate()}">
         </td>
