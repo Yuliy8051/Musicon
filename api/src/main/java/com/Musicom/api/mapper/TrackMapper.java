@@ -6,13 +6,13 @@ import com.Musicom.web_api_contract.TrackDto;
 import com.Musicom.data.model.Album;
 import com.Musicom.data.model.Band;
 import com.Musicom.data.model.Track;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Service("api")
+@Component("apiTrackMapper")
 public class TrackMapper implements IMap<TrackDto, Track> {
     @Override
     public Track mapDto(TrackDto trackDto) { // TODO
@@ -46,11 +46,6 @@ public class TrackMapper implements IMap<TrackDto, Track> {
         trackDto.setBands(bandSummariesDto);
 
         return trackDto;
-    }
-
-    @Override
-    public List<Track> mapAllDtos(List<TrackDto> trackDtos) {  // TODO
-        return List.of();
     }
 
     @Override
