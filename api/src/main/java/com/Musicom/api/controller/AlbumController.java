@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("album")
 @AllArgsConstructor
 public class AlbumController {
-    private AlbumService albumService;
+    private AlbumService service;
 
     @GetMapping("page/{page}")
     public ResponseEntity<PagedAlbumsDto> getPage(@PathVariable int page) {

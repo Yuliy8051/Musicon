@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("band")
 @AllArgsConstructor
 public class BandController {
-    private BandService bandService;
+    private BandService service;
 
     @GetMapping("page/{page}")
     public ResponseEntity<PagedBandsDto> getPage(@PathVariable int page) {
