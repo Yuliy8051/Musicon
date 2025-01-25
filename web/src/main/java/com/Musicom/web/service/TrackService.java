@@ -11,10 +11,10 @@ import org.springframework.web.client.RestClient;
 public class TrackService {
     private final RestClient restClient;
 
-    public PagedTracksDto getAll(int page) {
+    public PagedTracksDto getPage(int page) {
         return restClient
                 .get()
-                .uri("track/all/" + page)
+                .uri("track/page/" + page)
                 .retrieve()
                 .body(new ParameterizedTypeReference<>(){});
     }

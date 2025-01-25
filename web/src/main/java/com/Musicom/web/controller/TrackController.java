@@ -15,7 +15,7 @@ public class TrackController {
 
     @GetMapping("all/{page}")
     public String getAll(Model model, @PathVariable int page) {
-        PagedTracksDto pagedTracks = trackService.getAll(page);
+        PagedTracksDto pagedTracks = trackService.getPage(page);
         model.addAttribute("pagedTracks", pagedTracks);
         return "all";
     }

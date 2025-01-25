@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TrackController {
     private final TrackService service;
 
-    @GetMapping("all/{page}")
+    @GetMapping("page/{page}")
     public ResponseEntity<PagedTracksDto> getPage(@PathVariable int page) {
         return ResponseEntity.ok(service.getPage(page));
     }
