@@ -10,4 +10,22 @@ public class NotFoundException extends RuntimeException {
             super("Page " + page + " not found");
         }
     }
+
+    public static class BandNotFoundException extends NotFoundException {
+        public BandNotFoundException(String name) {
+            super("Band with name " + name + " not found");
+        }
+    }
+
+    public static class AlbumNotFoundException extends NotFoundException {
+        public AlbumNotFoundException(String name) {
+            super("Album with name " + name + " not found");
+        }
+    }
+
+    public static class TrackNotFoundException extends NotFoundException {
+        public TrackNotFoundException(String name) {
+            super("Track with name " + name + " not found");
+        }
+    }
 }
