@@ -17,6 +17,6 @@ public class BandController {
     @GetMapping("all/{page}")
     public String getAll(Model model, @PathVariable int page) {
         model.addAttribute("pagedBands", bandService.getPage(page));
-        return "bandPage";
+        return "band-page";
     }
 }

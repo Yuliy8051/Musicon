@@ -17,6 +17,6 @@ public class AlbumController {
     @GetMapping("all/{page}")
     public String getAll(Model model, @PathVariable int page) {
         model.addAttribute("pagedAlbums", albumService.getPage(page));
-        return "albumPage";
+        return "album-page";
     }
 }
