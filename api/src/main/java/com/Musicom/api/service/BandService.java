@@ -4,6 +4,7 @@ import com.Musicom.api.exception.NotFoundException;
 import com.Musicom.api.mapper.BandMapper;
 import com.Musicom.data.model.Band;
 import com.Musicom.data.repository.BandRepository;
+import com.Musicom.web_api_contract.BandDto;
 import com.Musicom.web_api_contract.PagedBandsDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class BandService {
 
     public PagedBandsDto getPage(int page) {
         int limit = 50;
-        long offset = (long) (page - 1)  * limit;
+        long offset = (long) (page - 1) * limit;
         long total = repository.countAll();
         if (total <= offset)
             throw new NotFoundException.PageNotFoundException(page);
@@ -31,5 +32,12 @@ public class BandService {
         pagedBands.setTotalPages(totalPages);
         pagedBands.setBands(bandMapper.mapAllEntities(bands));
         return pagedBands;
+    }
+
+    public List<BandDto> getByName(String name) {
+        List<Band> bands = repository.findByName(name);
+        if (bands.isEmpty())
+            throw new NotFoundException.BandNotFoundException(name);
+        return bandMapper.mapAllEntities(bands);
     }
 }

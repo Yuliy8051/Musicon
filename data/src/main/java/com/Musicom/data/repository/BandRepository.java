@@ -10,7 +10,10 @@ import java.util.Set;
 
 public interface BandRepository extends JpaRepository<Band, Long> {
     Band findBySourceId(String sourceId);
+
     Set<Band> findBySourceIdIn(List<String> sourceIds);
+
+    List<Band> findByName(String name);
 
     @Query(value = "select count(b) from Band b")
     Long countAll();

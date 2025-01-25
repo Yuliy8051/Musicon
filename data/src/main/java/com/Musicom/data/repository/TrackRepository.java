@@ -10,6 +10,8 @@ import java.util.List;
 public interface TrackRepository extends JpaRepository<Track, Long> {
     Track findBySourceId(String sourceId);
 
+    List<Track> findByName(String name);
+
     @Query(value = "select count(t) from Track t")
     Long countAll();
 

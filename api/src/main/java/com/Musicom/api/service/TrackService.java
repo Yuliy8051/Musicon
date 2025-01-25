@@ -5,6 +5,7 @@ import com.Musicom.web_api_contract.PagedTracksDto;
 import com.Musicom.api.mapper.TrackMapper;
 import com.Musicom.data.model.Track;
 import com.Musicom.data.repository.TrackRepository;
+import com.Musicom.web_api_contract.TrackDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,12 @@ public class TrackService {
         pagedTracks.setTotalPages(totalPages);
         pagedTracks.setTracks(trackMapper.mapAllEntities(tracks));
         return pagedTracks;
+    }
+
+    public List<TrackDto> getByName(String name) {
+        List<Track> tracks = repository.findByName(name);
+        if (tracks.isEmpty())
+            throw new NotFoundException.TrackNotFoundException(name);
+        return trackMapper.mapAllEntities(tracks);
     }
 }

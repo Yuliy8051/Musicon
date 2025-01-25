@@ -4,6 +4,7 @@ import com.Musicom.api.exception.NotFoundException;
 import com.Musicom.api.mapper.AlbumMapper;
 import com.Musicom.data.model.Album;
 import com.Musicom.data.repository.AlbumRepository;
+import com.Musicom.web_api_contract.AlbumDto;
 import com.Musicom.web_api_contract.PagedAlbumsDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,12 @@ public class AlbumService {
         pagedAlbums.setTotalPages(totalPages);
         pagedAlbums.setAlbums(albumMapper.mapAllEntities(albums));
         return pagedAlbums;
+    }
+
+    public List<AlbumDto> getByName(String name) {
+        List<Album> albums = repository.findByName(name);
+        if (albums.isEmpty())
+            throw new NotFoundException.AlbumNotFoundException(name);
+        return albumMapper.mapAllEntities(albums);
     }
 }

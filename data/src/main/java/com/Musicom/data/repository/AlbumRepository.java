@@ -10,6 +10,8 @@ import java.util.List;
 public interface AlbumRepository extends JpaRepository<Album, Long> {
     Album findBySourceId(String sourceId);
 
+    List<Album> findByName(String name);
+
     @Query("select count(a) from Album a")
     Long countAll();
 
