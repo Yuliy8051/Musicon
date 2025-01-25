@@ -1,5 +1,6 @@
 package com.Musicom.api.service;
 
+import com.Musicom.api.exception.NotFoundException;
 import com.Musicom.api.mapper.AlbumMapper;
 import com.Musicom.data.model.Album;
 import com.Musicom.data.repository.AlbumRepository;
@@ -20,7 +21,9 @@ public class AlbumService {
         int limit = 50;
         long offset = (long) (page - 1)  * limit;
         long total = repository.countAll();
-        int totalPages = (int) total / limit + 1;
+        if (total <= offset)
+            throw new NotFoundException.PageNotFoundException(page);
+        int totalPages = (int) (total - 1) / limit + 1;
         List<Album> albums = repository.findPage(offset, limit);
         PagedAlbumsDto pagedAlbums = new PagedAlbumsDto();
         pagedAlbums.setPage(page);

@@ -1,5 +1,6 @@
 package com.Musicom.api.service;
 
+import com.Musicom.api.exception.NotFoundException;
 import com.Musicom.web_api_contract.PagedTracksDto;
 import com.Musicom.api.mapper.TrackMapper;
 import com.Musicom.data.model.Track;
@@ -20,7 +21,9 @@ public class TrackService {
         int limit = 50;
         long offset = (long) (page - 1)  * limit;
         long total = repository.countAll();
-        int totalPages = (int) total / limit + 1;
+        if (total <= offset)
+            throw new NotFoundException.PageNotFoundException(page);
+        int totalPages = (int) (total - 1) / limit + 1;
         List<Track> tracks = repository.findPage(offset, limit);
         PagedTracksDto pagedTracks = new PagedTracksDto();
         pagedTracks.setPage(page);
