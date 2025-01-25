@@ -15,6 +15,6 @@ public interface BandRepository extends JpaRepository<Band, Long> {
     @Query(value = "select count(b) from Band b")
     Long countAll();
 
-    @Query(value = "select * from tracks limit :limit offset :offset", nativeQuery = true)
+    @Query(value = "select * from bands limit :limit offset :offset", nativeQuery = true)
     List<Band> findPage(@Param("offset") long offset, @Param("limit") int limit);
 }
