@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "albums")
 @Setter
 @Getter
-public class Album {
+public class Album implements ICanBeSummary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

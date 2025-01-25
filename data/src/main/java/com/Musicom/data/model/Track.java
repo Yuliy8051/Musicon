@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "tracks")
 @Setter
 @Getter
-public class Track {
+public class Track implements ICanBeSummary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
