@@ -1,19 +1,21 @@
 package com.Musicom.api.mapper;
 
-import com.Musicom.web_api_contract.AlbumSummaryDto;
-import com.Musicom.web_api_contract.BandSummaryDto;
 import com.Musicom.web_api_contract.TrackDto;
 import com.Musicom.data.model.Album;
 import com.Musicom.data.model.Band;
 import com.Musicom.data.model.Track;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Component("apiTrackMapper")
+@AllArgsConstructor
 public class TrackMapper implements IMap<TrackDto, Track> {
+    private final SummaryMapper<Band> bandSummaryMapper;
+
+    private final SummaryMapper<Album> albumSummaryMapper;
+
     @Override
     public Track mapDto(TrackDto trackDto) { // TODO
         return null;
@@ -27,28 +29,11 @@ public class TrackMapper implements IMap<TrackDto, Track> {
         trackDto.setUrl(track.getUrl());
         trackDto.setPopularity(track.getPopularity());
         trackDto.setDurationMs(track.getDurationMs());
-
-        Album album = track.getAlbum();
-        AlbumSummaryDto albumSummaryDto = new AlbumSummaryDto();
-        albumSummaryDto.setId(album.getId());
-        albumSummaryDto.setName(album.getName());
-
-        trackDto.setAlbum(albumSummaryDto);
-
-        Set<Band> bands = track.getBands();
-        Set<BandSummaryDto> bandSummariesDto = new HashSet<>();
-        for (Band band : bands) {
-            BandSummaryDto bandSummaryDto = new BandSummaryDto();
-            bandSummaryDto.setId(band.getId());
-            bandSummaryDto.setName(band.getName());
-            bandSummariesDto.add(bandSummaryDto);
-        }
-        trackDto.setBands(bandSummariesDto);
-
+        trackDto.setAlbum(albumSummaryMapper.mapEntity(track.getAlbum()));
+        trackDto.setBands(bandSummaryMapper.mapAllEntities(track.getBands()));
         return trackDto;
     }
 
-    @Override
     public List<TrackDto> mapAllEntities(List<Track> tracks) {
         return tracks
                 .stream()

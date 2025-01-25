@@ -24,5 +24,5 @@ public class AlbumDto {
 
     private ImageDto image;
 
-    private List<TrackSummaryDto> tracks;
+    private List<SummaryDto> tracks;
 }

@@ -4,11 +4,9 @@ import com.Musicom.data.model.Album;
 import com.Musicom.data.model.Image;
 import com.Musicom.data.model.Track;
 import com.Musicom.web_api_contract.AlbumDto;
-import com.Musicom.web_api_contract.TrackSummaryDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -17,7 +15,8 @@ import java.util.List;
 public class AlbumMapper implements IMap <AlbumDto, Album> {
     private final ImageMapper imageMapper;
 
-    @Override
+    private final SummaryMapper<Track> trackSummaryMapper;
+
     public List<AlbumDto> mapAllEntities(List<Album> albums) {
         return albums
                 .stream()
@@ -39,14 +38,7 @@ public class AlbumMapper implements IMap <AlbumDto, Album> {
         albumDto.setReleaseDate(album.getReleaseDate());
         albumDto.setTotalTracks(album.getTotalTracks());
 
-        List<TrackSummaryDto> trackSummaries = new ArrayList<>();
-        for (Track track : album.getTracks()) {
-            TrackSummaryDto trackSummary = new TrackSummaryDto();
-            trackSummary.setId(track.getId());
-            trackSummary.setName(track.getName());
-            trackSummaries.add(trackSummary);
-        }
-        albumDto.setTracks(trackSummaries);
+        albumDto.setTracks(trackSummaryMapper.mapAllEntities(album.getTracks()));
 
         album.getImages()
                 .stream()

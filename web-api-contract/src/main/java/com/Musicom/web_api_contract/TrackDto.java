@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,9 +20,9 @@ public class TrackDto {
 
     private int popularity;
 
-    private AlbumSummaryDto album;
+    private SummaryDto album;
 
-    private Set<BandSummaryDto> bands;
+    private List<SummaryDto> bands;
 
     private long total;
 }

@@ -1,11 +1,13 @@
 package com.Musicom.web_api_contract;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class BandSummaryDto {
+@AllArgsConstructor
+public class SummaryDto {
     private long id;
 
     private String name;
