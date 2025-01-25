@@ -1,5 +1,6 @@
 package com.Musicom.web.service;
 
+import com.Musicom.web.exception.ApiException;
 import com.Musicom.web_api_contract.PagedAlbumsDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class AlbumService {
                 .get()
                 .uri("album/page/" + page)
                 .retrieve()
+                .onStatus(status -> status.value() == 404, (request, response) -> {
+                    throw new ApiException(new String(response.getBody().readAllBytes()));
+                })
                 .body(PagedAlbumsDto.class);
     }
 }
