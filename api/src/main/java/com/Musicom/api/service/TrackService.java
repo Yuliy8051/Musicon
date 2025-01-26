@@ -35,7 +35,7 @@ public class TrackService {
     }
 
     public List<TrackDto> getByName(String name) {
-        List<Track> tracks = repository.findByName(name);
+        List<Track> tracks = repository.findByName(name.trim());
         if (tracks.isEmpty())
             throw new NotFoundException.TrackNotFoundException(name);
         return trackMapper.mapAllEntities(tracks);

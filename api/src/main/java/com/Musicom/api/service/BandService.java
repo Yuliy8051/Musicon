@@ -35,7 +35,7 @@ public class BandService {
     }
 
     public List<BandDto> getByName(String name) {
-        List<Band> bands = repository.findByName(name);
+        List<Band> bands = repository.findByName(name.trim());
         if (bands.isEmpty())
             throw new NotFoundException.BandNotFoundException(name);
         return bandMapper.mapAllEntities(bands);

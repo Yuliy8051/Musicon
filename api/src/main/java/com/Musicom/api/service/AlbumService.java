@@ -35,7 +35,7 @@ public class AlbumService {
     }
 
     public List<AlbumDto> getByName(String name) {
-        List<Album> albums = repository.findByName(name);
+        List<Album> albums = repository.findByName(name.trim());
         if (albums.isEmpty())
             throw new NotFoundException.AlbumNotFoundException(name);
         return albumMapper.mapAllEntities(albums);
