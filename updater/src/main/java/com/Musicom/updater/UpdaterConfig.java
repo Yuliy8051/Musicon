@@ -14,6 +14,7 @@ public class UpdaterConfig {
         return JobBuilder
                 .newJob(UpdaterJob.class)
                 .withIdentity("updater")
+                .withDescription("3600")
                 .storeDurably()
                 .build();
     }

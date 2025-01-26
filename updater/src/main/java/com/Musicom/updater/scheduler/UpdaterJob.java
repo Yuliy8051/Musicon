@@ -30,7 +30,13 @@ public class UpdaterJob implements Job {
         } catch (HttpClientErrorException.TooManyRequests ex) {
             LocalDateTime exceptionTime = LocalDateTime.now();
 
-            long[] secondsToStopAndToWait = calculateSecondsToStopAndToWait(ex, startTime, exceptionTime);
+            long intervalInSecBetweenFires = Long.parseLong(
+                    jobExecutionContext
+                            .getJobDetail()
+                            .getDescription()
+            );
+
+            long[] secondsToStopAndToWait = calculateSecondsToStopAndToWait(ex, startTime, exceptionTime, intervalInSecBetweenFires);
             long secondsToStop = secondsToStopAndToWait[0];
             long secondsToWait = secondsToStopAndToWait[1];
 
@@ -54,7 +60,8 @@ public class UpdaterJob implements Job {
 
     private long[] calculateSecondsToStopAndToWait(HttpClientErrorException.TooManyRequests ex,
                                                    LocalDateTime startTime,
-                                                   LocalDateTime exceptionTime) {
+                                                   LocalDateTime exceptionTime,
+                                                   long intervalInSecBetweenFires) {
         long timeDifference = Duration
                 .between(startTime, exceptionTime)
                 .toSeconds();
@@ -63,8 +70,8 @@ public class UpdaterJob implements Job {
                 getResponseHeaders()
                 .getFirst("Retry-After")
         );
-        // 60L * 60L means 60 minutes which the period of time for the trigger to be run
-        long remainingTimeForTriggerToRun = 60L * 60L - timeDifference;
+
+        long remainingTimeForTriggerToRun = intervalInSecBetweenFires - timeDifference;
 
         if (retryAfter > remainingTimeForTriggerToRun)
             return new long[]{retryAfter - remainingTimeForTriggerToRun, retryAfter};

@@ -1,6 +1,7 @@
 package com.Musicom.data.model;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 @Table(name = "albums")
 @Setter
 @Getter
+@EqualsAndHashCode
 public class Album implements ICanBeSummary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

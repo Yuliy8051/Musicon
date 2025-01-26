@@ -40,8 +40,4 @@ public class AlbumService {
             throw new NotFoundException.AlbumNotFoundException(name);
         return albumMapper.mapAllEntities(albums);
     }
-
-//    public void add(AlbumDto albumDto) {
-//
-//    }
 }
