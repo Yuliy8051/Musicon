@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -55,8 +56,10 @@ public class BandService {
 
     public void update(BandDto bandDto) {
         long id = bandDto.getId();
-        if (repository.findById(id).isEmpty())
+        Optional<Band> optionalBand = repository.findById(id);
+        if (optionalBand.isEmpty())
             throw new NotFoundException.BandNotFoundException(id);
+        imageRepository.deleteAll(optionalBand.get().getImages());
         Band band = bandMapper.mapDto(bandDto);
         band.setId(id);
         repository.save(band);

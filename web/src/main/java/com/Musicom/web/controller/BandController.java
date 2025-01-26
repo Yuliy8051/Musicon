@@ -49,4 +49,31 @@ public class BandController {
         service.add(band);
         return "redirect:all/1";
     }
+
+    @GetMapping("update form")
+    public String displayUpdateForm(Model model) {
+        BandDto band = new BandDto();
+        band.setGenres(new ArrayList<>());
+        band.setImage(new ImageDto());
+        model.addAttribute("band", band);
+        return "band-update-form";
+    }
+
+    @PostMapping("update form")
+    public String submitUpdateForm(@Valid @ModelAttribute BandDto band) {
+        service.update(band);
+        return "redirect:all/1";
+    }
+
+    @GetMapping("delete form")
+    public String displayDeleteForm(Model model) {
+        model.addAttribute("band", new BandDto());
+        return "band-delete-form";
+    }
+
+    @PostMapping("delete form")
+    public String submitDeleteForm(@ModelAttribute BandDto band) {
+        service.delete(band.getId());
+        return "redirect:all/1";
+    }
 }

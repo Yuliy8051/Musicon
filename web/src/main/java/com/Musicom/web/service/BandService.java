@@ -47,4 +47,25 @@ public class BandService {
                 })
                 .toBodilessEntity();
     }
+
+    public void update(BandDto bandDto) {
+        client.put()
+                .uri("band/update")
+                .body(bandDto)
+                .retrieve()
+                .onStatus(status -> status.value() == 404, (request, response) -> {
+                    throw new ApiException(new String(response.getBody().readAllBytes()));
+                })
+                .toBodilessEntity();
+    }
+
+    public void delete(long id) {
+        client.delete()
+                .uri("band/delete/" + id)
+                .retrieve()
+                .onStatus(status -> status.value() == 404, (request, response) -> {
+                    throw new ApiException(new String(response.getBody().readAllBytes()));
+                })
+                .toBodilessEntity();
+    }
 }
