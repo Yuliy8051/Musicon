@@ -52,4 +52,20 @@ public class BandService {
         repository.save(band);
         imageRepository.saveAll(band.getImages());
     }
+
+    public void update(BandDto bandDto) {
+        long id = bandDto.getId();
+        if (repository.findById(id).isEmpty())
+            throw new NotFoundException.BandNotFoundException(id);
+        Band band = bandMapper.mapDto(bandDto);
+        band.setId(id);
+        repository.save(band);
+        imageRepository.saveAll(band.getImages());
+    }
+
+    public void delete(long id) {
+        if (repository.findById(id).isEmpty())
+            throw new NotFoundException.BandNotFoundException(id);
+        repository.deleteById(id);
+    }
 }

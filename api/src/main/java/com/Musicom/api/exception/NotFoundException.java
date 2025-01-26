@@ -15,6 +15,9 @@ public class NotFoundException extends RuntimeException {
         public BandNotFoundException(String name) {
             super("Band with name " + name + " not found");
         }
+        public BandNotFoundException(long id) {
+            super("Band with id " + id + " not found");
+        }
     }
 
     public static class AlbumNotFoundException extends NotFoundException {
