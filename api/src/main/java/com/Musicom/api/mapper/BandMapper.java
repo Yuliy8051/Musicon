@@ -4,6 +4,7 @@ import com.Musicom.data.model.Band;
 import com.Musicom.data.model.Genre;
 import com.Musicom.data.model.Image;
 import com.Musicom.data.model.Track;
+import com.Musicom.data.repository.GenreRepository;
 import com.Musicom.web_api_contract.BandDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -19,9 +20,20 @@ public class BandMapper implements IMap<BandDto, Band> {
 
     private final SummaryMapper<Track> trackSummaryMapper;
 
+    private final GenreRepository genreRepository;
+
     @Override
-    public Band mapDto(BandDto bandDto) { // TODO
-        return null;
+    public Band mapDto(BandDto bandDto) {
+        Band band = new Band();
+        band.setUrl(bandDto.getUrl().trim());
+        band.setName(bandDto.getName().trim());
+        band.setPopularity(bandDto.getPopularity());
+        Image image = imageMapper.mapDto(bandDto.getImage());
+        image.setBand(band);
+        band.setImages(Set.of(image));
+        Set<Genre> genres = genreRepository.findByNameIn(bandDto.getGenres());
+        band.setGenres(genres);
+        return band;
     }
 
     @Override

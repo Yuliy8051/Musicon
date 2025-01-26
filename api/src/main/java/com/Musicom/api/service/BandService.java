@@ -1,9 +1,11 @@
 package com.Musicom.api.service;
 
+import com.Musicom.api.exception.BadRequestException;
 import com.Musicom.api.exception.NotFoundException;
 import com.Musicom.api.mapper.BandMapper;
 import com.Musicom.data.model.Band;
 import com.Musicom.data.repository.BandRepository;
+import com.Musicom.data.repository.ImageRepository;
 import com.Musicom.web_api_contract.BandDto;
 import com.Musicom.web_api_contract.PagedBandsDto;
 import lombok.AllArgsConstructor;
@@ -15,6 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 public class BandService {
     private BandRepository repository;
+
+    private ImageRepository imageRepository;
 
     private BandMapper bandMapper;
 
@@ -39,5 +43,13 @@ public class BandService {
         if (bands.isEmpty())
             throw new NotFoundException.BandNotFoundException(name);
         return bandMapper.mapAllEntities(bands);
+    }
+
+    public void add(BandDto bandDto) {
+        if (repository.findByUrl(bandDto.getUrl()) != null)
+            throw new BadRequestException.UrlNotUniqueException("Band");
+        Band band = bandMapper.mapDto(bandDto);
+        repository.save(band);
+        imageRepository.saveAll(band.getImages());
     }
 }

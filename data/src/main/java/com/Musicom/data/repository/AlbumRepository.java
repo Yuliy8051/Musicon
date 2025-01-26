@@ -15,6 +15,6 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
     @Query("select count(a) from Album a")
     Long countAll();
 
-    @Query(value = "select * from albums limit :limit offset :offset", nativeQuery = true)
+    @Query(value = "select * from albums order by id desc limit :limit offset :offset", nativeQuery = true)
     List<Album> findPage(@Param("offset") long offset, @Param("limit") int limit);
 }

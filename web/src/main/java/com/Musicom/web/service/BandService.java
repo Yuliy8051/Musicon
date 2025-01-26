@@ -36,4 +36,15 @@ public class BandService {
                 })
                 .body(new ParameterizedTypeReference<>(){});
     }
+
+    public void add(BandDto bandDto) {
+        client.post()
+                .uri("band/add")
+                .body(bandDto)
+                .retrieve()
+                .onStatus(status -> status.value() == 400, (request, response) -> {
+                    throw new ApiException(new String(response.getBody().readAllBytes()));
+                })
+                .toBodilessEntity();
+    }
 }

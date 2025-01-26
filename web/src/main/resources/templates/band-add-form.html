@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Band Add Form</title>
+</head>
+<body>
+<form action="#" th:action="@{/band/add form}" th:object="${band}" method="post">
+    <table style="padding: 10px">
+        <tr>
+            <td>
+                <label for="name">Name:</label>
+            </td>
+            <td>
+                <input id="name" type="text" th:field="${band.name}" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="url">Url:</label>
+            </td>
+            <td>
+                <input id="url" type="url" th:field="${band.url}" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="popularity">Popularity:</label>
+            </td>
+            <td>
+                <input id="popularity" type="number" th:field="${band.popularity}" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="genre-1">Genre 1:</label>
+            </td>
+            <td>
+                <input id="genre-1" type="text" th:field="${band.genres[0]}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="genre-2">Genre 2:</label>
+            </td>
+            <td>
+                <input id="genre-2" type="text" th:field="${band.genres[1]}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="genre-3">Genre 3:</label>
+            </td>
+            <td>
+                <input id="genre-3" type="text" th:field="${band.genres[2]}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="genre-4">Genre 4:</label>
+            </td>
+            <td>
+                <input id="genre-4" type="text" th:field="${band.genres[3]}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="genre-5">Genre 5:</label>
+            </td>
+            <td>
+                <input id="genre-5" type="text" th:field="${band.genres[4]}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="image">Image link:</label>
+            </td>
+            <td>
+                <input id="image" type="url" th:field="${band.image.url}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="submit" type="submit" value="add">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

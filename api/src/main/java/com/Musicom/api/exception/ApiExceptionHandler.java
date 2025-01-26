@@ -17,6 +17,18 @@ public class ApiExceptionHandler {
         return createErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(NotImageLinkException.class)
+    public ResponseEntity<ErrorResponseDto> handleNotImageLinkException(NotImageLinkException ex) {
+        log.info("NotImageLinkException was thrown. {}", ex.getMessage());
+        return createErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ErrorResponseDto> handleBadRequestException(BadRequestException ex) {
+        log.info("BadRequestException was thrown. {}", ex.getMessage());
+        return createErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
     private ResponseEntity<ErrorResponseDto> createErrorResponse(String message, HttpStatus status) {
         ErrorResponseDto response = new ErrorResponseDto(
                 message,

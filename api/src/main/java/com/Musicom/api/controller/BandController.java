@@ -4,11 +4,9 @@ import com.Musicom.api.service.BandService;
 import com.Musicom.web_api_contract.BandDto;
 import com.Musicom.web_api_contract.PagedBandsDto;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +24,11 @@ public class BandController {
     @GetMapping("name/{name}")
     public ResponseEntity<List<BandDto>> getByName(@PathVariable String name) {
         return ResponseEntity.ok(service.getByName(name));
+    }
+
+    @PostMapping("add")
+    public ResponseEntity<Void> add(@RequestBody BandDto band) {
+        service.add(band);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
