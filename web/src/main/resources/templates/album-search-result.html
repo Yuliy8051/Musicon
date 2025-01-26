@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album Search Result</title>
+</head>
+<body>
+<table style="padding: 10px">
+    <tr>
+        <td>Name:</td>
+        <td>Image:</td>
+        <td>Released:</td>
+        <td>Amount of tracks:</td>
+        <td>Tracks:</td>
+    </tr>
+    <tr th:each="album : ${albums}" th:id="'album-' + ${album.getId()}">
+        <td>
+            <a th:text="${album.getName()}" th:href="${album.getUrl()}"></a>
+        </td>
+        <td>
+            <img th:if="${album.getImage().getUrl()} != null" th:src="${album.getImage().getUrl()}"
+                 th:alt="${album.getName()}" style="width: 25%">
+        </td>
+        <td th:text="${album.getReleaseDate()}">
+        </td>
+        <td th:text="${album.getTotalTracks()}">
+        </td>
+        <td>
+            <table>
+                <tr th:each="track : ${album.getTracks()}">
+                    <td th:id="'track-' + ${track.getId()}">
+                        <a th:text="${track.getName()}"
+                           th:href="'http://localhost:8080/track/' + ${track.getId()}">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

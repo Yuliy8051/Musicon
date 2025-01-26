@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Band Search Result</title>
+</head>
+<body>
+<table style="padding: 10px">
+    <tr>
+        <td>Name:</td>
+        <td>Popularity:</td>
+        <td>Image:</td>
+        <td>Genres:</td>
+        <td>Tracks:</td>
+    </tr>
+    <tr th:each="band : ${bands}" th:id="'band-' + ${band.getId()}">
+        <td>
+            <a th:text="${band.getName()}" th:href="${band.getUrl()}"></a>
+        </td>
+        <td th:text="${band.getPopularity()}"></td>
+        <td>
+            <img th:if="${band.getImage()} != null" th:src="${band.getImage().getUrl()}" th:alt="${band.getName()}" style="width: 25%">
+        </td>
+        <td>
+            <table>
+                <tr th:each="genre : ${band.getGenres()}">
+                    <td th:text="${genre}"></td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table>
+                <tr th:each="track : ${band.getTracks()}">
+                    <td th:id="'track-' + ${track.getId()}">
+                        <a th:text="${track.getName()}"
+                           th:href="'http://localhost:8080/track/' + ${track.getId()}">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

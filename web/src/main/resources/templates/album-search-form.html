@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album Search Form</title>
+</head>
+<body>
+<form action="#" th:action="@{/album/search result}" th:object="${album}" method="get">
+    <table style="padding: 10px">
+        <tr>
+            <td>
+                <label for="name">Name:</label>
+            </td>
+            <td>
+                <input id="name" type="text" th:field="${album.name}" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="submit" type="submit" value="search">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

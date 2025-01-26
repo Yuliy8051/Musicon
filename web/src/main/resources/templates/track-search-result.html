@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mosicom</title>
+    <title>Track Search Result</title>
 </head>
 <body>
 <table style="padding: 10px">
@@ -13,7 +13,7 @@
         <td>Album:</td>
         <td>Bands:</td>
     </tr>
-    <tr th:each="track : ${pagedTracks.getTracks()}" th:id="'track-' + ${track.getId()}">
+    <tr th:each="track : ${tracks}" th:id="'track-' + ${track.getId()}">
         <td><a th:text="${track.getName()}" th:href="${track.getUrl()}"></a></td>
         <td th:text="${track.getDurationMs() / 1000 / 60} + ':' + ${(track.getDurationMs() / 1000) % 60}"></td>
         <td th:text="${track.getPopularity()}"></td>
@@ -35,10 +35,5 @@
         </td>
     </tr>
 </table>
-<footer>
-    <span th:each="i : ${#numbers.sequence(1, pagedTracks.getTotalPages())}">
-        <a th:href="'http://localhost:8080/track/all/' + ${i}" th:text="${i}"></a>
-    </span>
-</footer>
 </body>
 </html>
