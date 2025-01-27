@@ -1,13 +1,15 @@
 package com.Musicom.data.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "images")
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

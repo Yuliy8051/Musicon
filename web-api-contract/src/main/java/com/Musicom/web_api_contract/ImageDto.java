@@ -1,10 +1,12 @@
 package com.Musicom.web_api_contract;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 public class ImageDto {
     private Long id;
 

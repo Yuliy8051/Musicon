@@ -1,13 +1,15 @@
 package com.Musicom.web_api_contract;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class TrackDto {
     private Long id;
 
@@ -23,6 +25,4 @@ public class TrackDto {
     private SummaryDto album;
 
     private List<SummaryDto> bands;
-
-    private long total;
 }

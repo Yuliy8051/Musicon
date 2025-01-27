@@ -46,7 +46,7 @@ public class BandMapper implements IMap<BandDto, Band> {
         band.getImages()
                 .stream()
                 .max(Comparator.comparing(Image::getHeight))
-                .ifPresent(b -> bandDto.setImage(imageMapper.mapEntity(b)));
+                .ifPresent(i -> bandDto.setImage(imageMapper.mapEntity(i)));
         bandDto.setGenres(
                 band.getGenres()
                         .stream()

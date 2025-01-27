@@ -1,9 +1,7 @@
 package com.Musicom.data.model;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
@@ -11,6 +9,8 @@ import java.util.Set;
 @Table(name = "bands")
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 public class Band implements ICanBeSummary {
     @Id
