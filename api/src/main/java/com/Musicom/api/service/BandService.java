@@ -59,7 +59,11 @@ public class BandService {
         Optional<Band> optionalBand = repository.findById(id);
         if (optionalBand.isEmpty())
             throw new NotFoundException.BandNotFoundException(id);
-        imageRepository.deleteAll(optionalBand.get().getImages());
+        Band existingBand = optionalBand.get();
+        String newUrl = bandDto.getUrl();
+        if (!existingBand.getUrl().equals(newUrl) && repository.findByUrl(newUrl) != null)
+            throw new BadRequestException.UrlNotUniqueException("Band");
+        imageRepository.deleteAll(existingBand.getImages());
         Band band = bandMapper.mapDto(bandDto);
         band.setId(id);
         repository.save(band);
