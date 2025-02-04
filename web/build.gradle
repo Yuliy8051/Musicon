@@ -32,6 +32,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '8.0.2.Final'
+	implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.28.0'
 }
 
 tasks.named('test') {

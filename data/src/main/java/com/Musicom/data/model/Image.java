@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+//@EqualsAndHashCode
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

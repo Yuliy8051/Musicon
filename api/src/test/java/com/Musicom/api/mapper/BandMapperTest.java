@@ -97,7 +97,14 @@ public class BandMapperTest {
 
         Band result = bandMapper.mapDto(bandDto);
 
-        assertEquals(band, result);
+        assertEquals(band.getGenres(), result.getGenres());
+        assertEquals(band.getId(), result.getId());
+        assertEquals(band.getName(), result.getName());
+        assertEquals(band.getImages(), result.getImages());
+        assertEquals(band.getUrl(), result.getUrl());
+        assertEquals(band.getPopularity(), result.getPopularity());
+        assertEquals(band.getTracks(), result.getTracks());
+        assertEquals(band.getSourceId(), result.getSourceId());
     }
     @Test
     public void shouldReturnDto() {
@@ -151,6 +158,12 @@ public class BandMapperTest {
 
         BandDto result =  bandMapper.mapEntity(band);
 
-        assertEquals(bandDto, result);
+        assertEquals(bandDto.getPopularity(), result.getPopularity());
+        assertEquals(bandDto.getGenres(), result.getGenres());
+        assertEquals(bandDto.getName(), result.getName());
+        assertEquals(bandDto.getUrl(), result.getUrl());
+        assertEquals(bandDto.getTracks(), result.getTracks());
+        assertEquals(bandDto.getImage(), result.getImage());
+        assertEquals(bandDto.getId(), result.getId());
     }
 }

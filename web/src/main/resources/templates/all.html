@@ -17,18 +17,12 @@
         <td><a th:text="${track.getName()}" th:href="${track.getUrl()}"></a></td>
         <td th:text="${track.getDurationMs() / 1000 / 60} + ':' + ${(track.getDurationMs() / 1000) % 60}"></td>
         <td th:text="${track.getPopularity()}"></td>
-        <td th:id="'album-' + ${track.getAlbum().getId()}">
-            <a th:text="${track.getAlbum().getName()}"
-               th:href="'http://localhost:8080/album/' + ${track.getAlbum().getId()}">
-            </a>
+        <td th:id="'album-' + ${track.getAlbum().getId()}" th:text="${track.getAlbum().getName()}">
         </td>
         <td>
             <table>
                 <tr th:each="band : ${track.getBands()}">
-                    <td th:id="'band-' + ${band.getId()}">
-                        <a th:text="${band.getName()}"
-                           th:href="'http://localhost:8080/band/' + ${band.getId()}">
-                        </a>
+                    <td th:id="'band-' + ${band.getId()}" th:text="${band.getName()}">
                     </td>
                 </tr>
             </table>

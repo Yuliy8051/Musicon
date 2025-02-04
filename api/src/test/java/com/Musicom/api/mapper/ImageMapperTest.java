@@ -37,7 +37,9 @@ public class ImageMapperTest {
 
         Image result = imageMapper.mapDto(imageDto);
 
-        assertEquals(expected, result);
+        assertEquals(expected.getUrl(), result.getUrl());
+        assertEquals(expected.getWidth(), result.getWidth());
+        assertEquals(expected.getHeight(), result.getHeight());
     }
     @Test
     public void shouldThrowNotImageLinkException() {

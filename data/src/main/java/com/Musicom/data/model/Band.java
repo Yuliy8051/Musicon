@@ -11,7 +11,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+//@EqualsAndHashCode
 public class Band implements ICanBeSummary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

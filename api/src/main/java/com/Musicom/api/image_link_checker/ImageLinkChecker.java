@@ -4,12 +4,13 @@ import lombok.AllArgsConstructor;
 import org.apache.hc.client5.http.classic.methods.HttpHead;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
 
 import java.io.IOException;
 
 @AllArgsConstructor
 public class ImageLinkChecker {
-    private final CloseableHttpClient httpClient;
+    private CloseableHttpClient httpClient;
 
     public boolean isImageLink(String url) {
         try (CloseableHttpClient client = httpClient) {
@@ -20,6 +21,9 @@ public class ImageLinkChecker {
             }
         } catch (IOException ex) {
             return false;
+        } catch (IllegalStateException ex) {
+            httpClient = HttpClients.createDefault();
+            return isImageLink(url);
         }
     }
 }

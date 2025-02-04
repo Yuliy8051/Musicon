@@ -27,10 +27,7 @@
         <td>
             <table>
                 <tr th:each="track : ${album.getTracks()}">
-                    <td th:id="'track-' + ${track.getId()}">
-                    <a th:text="${track.getName()}"
-                       th:href="'http://localhost:8080/track/' + ${track.getId()}">
-                    </a>
+                    <td th:id="'track-' + ${track.getId()}" th:text="${track.getName()}">
                 </td>
                 </tr>
             </table>

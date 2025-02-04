@@ -53,7 +53,7 @@ public class BandService {
                 .uri("band/update")
                 .body(bandDto)
                 .retrieve()
-                .onStatus(status -> status.value() == 404, (request, response) -> {
+                .onStatus(status -> status.value() == 404 || status.value() == 400, (request, response) -> {
                     throw new ApiException(new String(response.getBody().readAllBytes()));
                 })
                 .toBodilessEntity();
